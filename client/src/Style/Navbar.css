@@ -1,0 +1,162 @@
+/* Navbar.css - Fixed background color issue */
+:root {
+  --navbar-bg-color: #caeeab; /* Changed from --secondary-color to avoid conflicts */
+  --text-color: #333;
+  --text-hover: #2c6ecb;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease-in-out;
+}
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.navbar {
+  background-color: var(--navbar-bg-color); /* Using the specific variable */
+  box-shadow: var(--shadow);
+  padding: 0.8rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+  width: 100%;
+  max-width: 100vw;
+}
+
+.navbar.scrolled {
+  background-color: rgba(202, 238, 171, 0.95); /* Using direct color value */
+  backdrop-filter: blur(5px);
+  height: 60px;
+}
+
+/* Rest of your existing CSS remains the same */
+.navbar-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  max-width: 1200px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  color: black;
+}
+
+/* ... rest of your CSS ... */
+
+.navbar-logo h1 {
+  font-weight: 700;
+  font-size: clamp(1.2rem, 4vw, 1.5rem); /* Responsive font size */
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  white-space: nowrap;
+  color: black;
+}
+
+/* Menu Icon */
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  /* color: var(--text-color); */
+  transition: var(--transition);
+}
+
+/* Navigation Links */
+.navbar-links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Active mobile menu */
+.navbar-links.active {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0; /* Ensure it doesn't cause horizontal scroll */
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: var(--secondary-color);
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease forwards;
+  box-sizing: border-box;
+}
+
+.navbar-links li {
+  width: 100%;
+  text-align: center;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  /* color: var(--text-color); */
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: var(--transition);
+  padding: 0.8rem 0;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+/* Desktop Styles */
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .navbar-links li {
+    width: auto;
+  }
+
+  .navbar-links li a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    width: auto;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
